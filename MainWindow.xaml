@@ -1,0 +1,90 @@
+﻿<Window x:Class="AutoCamera.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AutoCamera" 
+        Height="694" Width="1054" Icon="/AutoCamera;component/Images/icon.png" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.Background>
+        <ImageBrush ImageSource="/AutoCamera;component/Images/mybg.png" />
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93" />
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel x:Name="Title" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="7,4">
+                <local:ImageButton x:Name="btn_close" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="/Images/关闭.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_close_Click" />
+                <local:ImageButton x:Name="btn_min" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="/Images/最小化.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_min_Click" />
+<local:ImageButton x:Name="btn_set" Width="27" Height="26" VerticalAlignment="Top"  ImgPath="/Images/设置菜单.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_set_Click">
+    <local:ImageButton.ContextMenu>
+        <ContextMenu Name="menu" Placement="MousePoint" Width="200">
+            <MenuItem Header="修改密码" Template="{StaticResource SelfMenuItemTemplate}" />
+            <MenuItem Header="设置照片存放位置" Template="{StaticResource SelfMenuItemTemplate}" />
+            <MenuItem Header="设置套系解析位置" Template="{StaticResource SelfMenuItemTemplate}" />
+            <MenuItem Header="进入官网" Template="{StaticResource SelfMenuItemTemplate}" />
+            <ContextMenu.Template>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border Margin="10,10" Background="AliceBlue">
+                        <ItemsPresenter Margin="2,2" />
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="8" Opacity="0.5" />
+                        </Border.Effect>
+                    </Border>
+                </ControlTemplate>                               
+            </ContextMenu.Template>
+        </ContextMenu>                     
+    </local:ImageButton.ContextMenu>
+</local:ImageButton>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="0">
+                <local:ImageButton x:Name="btn_back1" Width="80" Height="28" Margin="10,0" ImgPath="/Images/返回.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_back1_Click" />
+                <Border x:Name="border_taoxi" Width="140" Height="28">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/AutoCamera;component/Images/01.png" />                      
+                    </Border.Background>
+                    <TextBlock x:Name="tb_taoxi" Text="套系列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                </Border>
+                <Border x:Name="border_changjing" Width="140" Height="28">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/AutoCamera;component/Images/02.png" />
+                    </Border.Background>
+                    <TextBlock x:Name="tb_changjing" Text="场景列表" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" FontWeight="Bold"></TextBlock>
+                </Border>             
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7,0" Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center" Margin="7,0">当前登录用户：</TextBlock>
+                <TextBlock VerticalAlignment="Center" x:Name="tb_curuser">Admin</TextBlock>
+                <local:ImageButton x:Name="btn_quitsys" Width="100" Height="24" ImgPath="/Images/退出系统.png" Template="{StaticResource ImageButtonTemplate}" Margin="10,0" Click="btn_quitsys_Click" />
+            </StackPanel>
+        </Grid>
+        
+        <ScrollViewer Margin="7,1,7,3" Grid.Row="2" Template="{StaticResource MyScrollViewerControlTemplate}" VerticalScrollBarVisibility="Auto">
+             <WrapPanel x:Name="ShowPanel" Width="1000">
+
+            </WrapPanel>
+        </ScrollViewer>
+        
+        <Grid Grid.Row="3" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="7,0">
+                <local:ImageButton x:Name="btn_addpackage" Width="112" Height="43" ImgPath="/Images/添加.png" Template="{StaticResource ImageButtonTemplate}" Margin="10,8" />
+                <local:ImageButton x:Name="btn_delpackage" Width="112" Height="43" ImgPath="/Images/删除.png" Template="{StaticResource ImageButtonTemplate}" Margin="0,8"/>
+            </StackPanel>
+            <local:ImageButton Grid.Column="2" x:Name="btn_intopackage" Width="132" Height="43" ImgPath="/Images/进入套系.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_intopackage_Click" />
+            <local:ImageButton Grid.Column="2" x:Name="btn_intoscene" Width="132" Height="43" ImgPath="/Images/进入场景.png" Template="{StaticResource ImageButtonTemplate}" Click="btn_intoscene_Click" />
+        </Grid>
+    </Grid>
+</Window>
